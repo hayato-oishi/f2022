@@ -1,5 +1,4 @@
-お天気取得API
+お天気取得 API
 
-start: YYYYMMDD 
+start: YYYYMMDD
 end: YYYYMMDD
-

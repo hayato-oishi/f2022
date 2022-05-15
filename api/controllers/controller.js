@@ -1,9 +1,9 @@
 class Controller {
-  responseDto (data) {
+  responseDto(data) {
     const { error } = data
     const result = {
       data: {},
-      error: ''
+      error: '',
     }
     // 正常系エラー時
     if (error) {
