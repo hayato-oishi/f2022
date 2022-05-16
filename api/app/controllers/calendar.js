@@ -3,7 +3,7 @@ import moment from 'moment'
 import calendar from '../services/calendar.js'
 
 class Calendar extends Controller {
-  month(req, res, next) {
+  async month(req, res, next) {
     const date = moment(`${req.query.years} ${req.query.months}`, 'YYYY MM')
     // Todo:余裕あったら後でバリデーション追加
     // date.isValid()

@@ -9,13 +9,9 @@ class Database {
     database: process.env.DB_DATABASE,
   })
 
-  async get(query, params = []) {
+  async query(query, params = []) {
     this.pool.query = util.promisify(this.pool.query)
-    try {
-      return await this.pool.query(query, params)
-    } catch (err) {
-      throw new Error(err)
-    }
+    return await this.pool.query(query, params)
   }
 }
 

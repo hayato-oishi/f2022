@@ -1,12 +1,9 @@
 import Users from '../models/users.js'
-import database from '../modules/database.js'
+import users  from '../repositories/users.js'
 class User {
   async login({ email, password }) {
     try {
-      const records = await database.get(
-        'SELECT * FROM users WHERE email = ? AND password = ?',
-        [email, password]
-      )
+      const records = await users.login({ email, password })
       const result = records.map((record) => {
         const user = new Users(record)
         return user.get()
