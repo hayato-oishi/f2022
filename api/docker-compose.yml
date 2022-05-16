@@ -9,12 +9,12 @@ services:
     working_dir: /app
     ports:
       - 3001:3001
-    command: yarn run dev
+    command: bash -c "yarn install && yarn run dev"
     networks:
       - app-network
   db:
     image: mysql:5.6
-    container_name: mysql
+    container_name: db
     environment:
       MYSQL_ROOT_USER: root
       MYSQL_ROOT_PASSWORD: root

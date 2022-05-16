@@ -4,9 +4,9 @@ import calendar from '../services/calendar.js'
 
 class Calendar extends Controller {
   month(req, res, next) {
-    // 余裕あったら後でエラー処理
     const date = moment(`${req.query.years} ${req.query.months}`, 'YYYY MM')
-    date.isValid()
+    // Todo:余裕あったら後でバリデーション追加
+    // date.isValid()
     try {
       const days = calendar.month(date)
       return res.json({ days })

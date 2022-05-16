@@ -1,12 +1,11 @@
 import Controller from './controller.js'
-import database from '../modules/database.js'
-// import user from '../services/user.js'
+import user from '../services/user.js'
 
 class User extends Controller {
   async login(req, res, next) {
     try {
-      const records = await database.get('select email from users')
-      return res.json({ records })
+      const response = await user.login(req.query)
+      return res.json({ response })
     } catch (e) {
       // エラー
       next(e)

@@ -1,4 +1,3 @@
-// import HttpRequest from "../modules/http-requeat.js"
 class Calendar {
   month(reqDate) {
     try {

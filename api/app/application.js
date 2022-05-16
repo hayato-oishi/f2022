@@ -10,6 +10,7 @@ const port = 3001
 const application = express()
 
 // 基本・共通
+application.disable('x-powered-by')
 application.use(express.json())
 application.use(express.urlencoded({ extended: false }))
 application.use(cookieParser())

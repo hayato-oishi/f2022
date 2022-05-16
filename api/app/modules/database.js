@@ -3,18 +3,16 @@ import util from 'util'
 
 class Database {
   pool = mysql.createPool({
-    host: 'db',
-    user: 'root',
-    password: 'root',
-    database: 'oteken',
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_DATABASE,
   })
 
-  async get(query) {
+  async get(query, params = []) {
     this.pool.query = util.promisify(this.pool.query)
     try {
-      const records = await this.pool.query(query)
-      this.pool.end()
-      return records
+      return await this.pool.query(query, params)
     } catch (err) {
       throw new Error(err)
     }
