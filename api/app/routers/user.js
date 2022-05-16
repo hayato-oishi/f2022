@@ -1,8 +1,8 @@
 import { Router } from 'express'
-import calendar from '../controllers/calendar.js'
+import user from '../controllers/user.js'
 const router = Router()
 
 // カレンダー取得API
-router.get('/calendar/month', calendar.month)
+router.get('/user/login', user.login)
 
 export default router

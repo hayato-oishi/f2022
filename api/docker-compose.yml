@@ -1,6 +1,17 @@
 version: '3.7'
 
 services:
+  app:
+    image: node:16
+    container_name: app
+    volumes:
+      - ./app:/app
+    working_dir: /app
+    ports:
+      - 3001:3001
+    command: yarn run dev
+    networks:
+      - app-network
   db:
     image: mysql:5.6
     container_name: mysql
@@ -8,7 +19,13 @@ services:
       MYSQL_ROOT_USER: root
       MYSQL_ROOT_PASSWORD: root
     volumes:
-    - ./db/sql:/docker-entrypoint-initdb.d
-    - ./db/my.cnf:/etc/mysql/my.cnf
+      - ./db/sql:/docker-entrypoint-initdb.d
+      - ./db/my.cnf:/etc/mysql/my.cnf
     ports:
-    - 3306:3306
+      - 3306:3306
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
