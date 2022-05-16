@@ -1,0 +1,12 @@
+CREATE DATABASE oteken;
+CREATE TABLE oteken.users
+(
+     id MEDIUMINT AUTO_INCREMENT,
+     email VARCHAR (100) NOT NULL UNIQUE,
+     password VARCHAR (100) NOT NULL,
+     created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+     PRIMARY KEY (id)
+);
+
+USE oteken;
+INSERT INTO users VALUES (DEFAULT, 'example@example.com', 'example', CURRENT_TIMESTAMP);
