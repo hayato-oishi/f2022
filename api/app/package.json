@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "nodemon ./application.js",
     "start": "node ./application.js",
-    "lint": "eslint --fix --ext .js --ignore-path .gitignore . & prettier --write ."
+    "lint:js": "eslint --ext \".js,.vue\" --ignore-path .gitignore .",
+    "lint": "prettier --write --list-different . && yarn lint:js --fix"
   },
   "dependencies": {
     "cookie-parser": "~1.4.6",
