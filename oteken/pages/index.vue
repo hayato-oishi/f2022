@@ -1,30 +1,36 @@
 <template>
-  <v-row justify="center" align="center">
-    <v-col cols="12" sm="8" md="6">
-      <div class="calendar">
-        <div class="month">
-          <i class="mdi mdi-chevron-left prev" @click="prev"></i>
-          <div class="date">
-            <h1>{{ monthText }}</h1>
-            <p>{{ today }}</p>
+  <v-container>
+    <v-row justify="center" align="center">
+      <v-col cols="12" sm="8" md="6">
+        <div class="calendar">
+          <div class="month">
+            <v-btn icon @click="prev">
+              <v-icon>mdi-chevron-left</v-icon>
+            </v-btn>
+            <div class="date">
+              <h1>{{ monthText }}</h1>
+              <p>{{ today }}</p>
+            </div>
+            <v-btn icon @click="next">
+              <v-icon>mdi-chevron-right</v-icon>
+            </v-btn>
           </div>
-          <i class="mdi mdi-chevron-right next" @click="next"></i>
+          <div class="weekdays">
+            <div>日</div>
+            <div>月</div>
+            <div>火</div>
+            <div>水</div>
+            <div>木</div>
+            <div>金</div>
+            <div>土</div>
+          </div>
+          <div class="days">
+            <div v-for="(day, index) in calendarDays" :key="`${index}day.day`" :class="{'prev-next-date': !day.sameMonth}">{{ day.day }}</div>
+          </div>
         </div>
-        <div class="weekdays">
-          <div>日</div>
-          <div>月</div>
-          <div>火</div>
-          <div>水</div>
-          <div>木</div>
-          <div>金</div>
-          <div>土</div>
-        </div>
-        <div class="days">
-          <div v-for="(day, index) in calendarDays" :key="`${index}day.day`" :class="{'prev-next-date': !day.sameMonth}">{{ day.day }}</div>
-        </div>
-      </div>
-    </v-col>
-  </v-row>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
