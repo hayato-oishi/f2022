@@ -1,79 +1,28 @@
 <template>
   <v-row justify="center" align="center">
     <v-col cols="12" sm="8" md="6">
-      <v-card class="logo py-4 d-flex justify-center">
-      </v-card>
-      <v-card>
-        <v-card-title class="headline">
-          Welcome to the Vuetify + Nuxt.js template
-        </v-card-title>
-        <v-card-text>
-          <p>
-            Vuetify is a progressive Material Design component framework for
-            Vue.js. It was designed to empower developers to create amazing
-            applications.
-          </p>
-          <p>
-            For more information on Vuetify, check out the
-            <a
-              href="https://vuetifyjs.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              documentation </a
-            >.
-          </p>
-          <p>
-            If you have questions, please join the official
-            <a
-              href="https://chat.vuetifyjs.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              title="chat"
-            >
-              discord </a
-            >.
-          </p>
-          <p>
-            Find a bug? Report it on the github
-            <a
-              href="https://github.com/vuetifyjs/vuetify/issues"
-              target="_blank"
-              rel="noopener noreferrer"
-              title="contribute"
-            >
-              issue board </a
-            >.
-          </p>
-          <p>
-            Thank you for developing with Vuetify and I look forward to bringing
-            more exciting features in the future.
-          </p>
-          <div class="text-xs-right">
-            <em><small>&mdash; John Leider</small></em>
+      <div class="calendar">
+        <div class="month">
+          <i class="mdi mdi-chevron-left prev" @click="prev"></i>
+          <div class="date">
+            <h1>{{ monthText }}</h1>
+            <p>{{ today }}</p>
           </div>
-          <hr class="my-3" />
-          <a
-            href="https://nuxtjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Nuxt Documentation
-          </a>
-          <br />
-          <a
-            href="https://github.com/nuxt/nuxt.js"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Nuxt GitHub
-          </a>
-        </v-card-text>
-        <v-card-actions>
-          <v-spacer />
-          <v-btn color="primary" nuxt to="/inspire"> Continue </v-btn>
-        </v-card-actions>
-      </v-card>
+          <i class="mdi mdi-chevron-right next" @click="next"></i>
+        </div>
+        <div class="weekdays">
+          <div>日</div>
+          <div>月</div>
+          <div>火</div>
+          <div>水</div>
+          <div>木</div>
+          <div>金</div>
+          <div>土</div>
+        </div>
+        <div class="days">
+          <div v-for="(day, index) in calendarDays" :key="`${index}day.day`" :class="{'prev-next-date': !day.sameMonth}">{{ day.day }}</div>
+        </div>
+      </div>
     </v-col>
   </v-row>
 </template>
@@ -81,8 +30,68 @@
 <script>
 export default {
   name: 'IndexPage',
+  data() {
+    return {
+      listOfDate: [],
+      date: new Date(),
+      today: new Date().toDateString()
+    }
+  },
+  computed: {
+    calendarDays () {
+      const today = this.date
+      return this.listOfDate.map((date) => {
+        date = new Date(date)
+        return {
+          day: date.getDate(),
+          sameMonth: date.getMonth() === today.getMonth()
+        }
+      })
+    },
+    year () {
+      return this.date.getFullYear()
+    },
+    month () {
+      return this.date.getMonth() + 1
+    },
+    monthText () {
+      const months = [
+        '1月',
+        '2月',
+        '3月',
+        '4月',
+        '5月',
+        '6月',
+        '7月',
+        '8月',
+        '9月',
+        '10月',
+        '11月',
+        '12月',
+      ]
+      return months[this.date.getMonth()]
+    }
+  },
   created() {
-    console.log(this.$axios.get('/api/calendar/month?years=2022&months=5'))
-  }
+    this.getCalendar(this.year, this.month)
+  },
+  methods: {
+    async getCalendar(year, month) {
+      const response = await this.$axios.get(`/api/calendar/month?year=${year}&month=${month}`)
+      this.listOfDate = response.data.days
+    },
+    prev () {
+      const date = new Date(this.date)
+      date.setMonth(date.getMonth() - 1)
+      this.date = date
+      this.getCalendar(this.year, this.month)
+    },
+    next () {
+      const date = new Date(this.date)
+      date.setMonth(date.getMonth() + 1)
+      this.date = date
+      this.getCalendar(this.year, this.month)
+    }
+  },
 }
 </script>

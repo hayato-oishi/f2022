@@ -6,7 +6,7 @@ class Calendar {
       // 前月の最終日
       const prevLastDate = reqDate.clone().add(-1, 'months').date()
       // 前月の表示数
-      const prevDay = reqDate.clone().day() - 1
+      const prevDay = reqDate.clone().day()
       // 次月の表示数
       const nextDay = 7 - reqDate.clone().endOf('month').day() - 1
       const days = []
