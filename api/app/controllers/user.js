@@ -5,7 +5,7 @@ class User extends Controller {
   async login(req, res, next) {
     try {
       const response = await user.login(req.query)
-      return res.json({ response })
+      return res.json(super.responseDto(response, 'user'))
     } catch (e) {
       // エラー
       next(e)

@@ -1,11 +1,11 @@
 import database from '../modules/database.js'
-class Wathers {
+class weathers {
   async list({ start, end }) {
     return await database.query(
-      'SELECT * FROM wathers WHERE (wather_date BETWEEN ? AND ?)',
+      'SELECT * FROM weathers WHERE (weather_date BETWEEN ? AND ?)',
       [start, end]
     )
   }
 }
 
-export default new Wathers()
+export default new weathers()

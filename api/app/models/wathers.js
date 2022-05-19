@@ -1,21 +1,21 @@
 import moment from 'moment'
 
-class Wathers {
+class weathers {
   constructor(params) {
     this.id = params.id
-    this.watherDate = moment(params.wather_date).format('YYYY-MM-DD')
-    this.watherCode = params.wather_code
+    this.weatherDate = moment(params.weather_date).format('YYYY-MM-DD')
+    this.weatherCode = params.weather_code
     this.createdAt = params.created_at
   }
 
   get() {
     return {
       id: this.id,
-      watherDate: this.watherDate,
-      watherCode: this.watherCode,
+      weatherDate: this.weatherDate,
+      weatherCode: this.weatherCode,
       createdAt: this.createdAt
     }
   }
 }
 
-export default Wathers
+export default weathers

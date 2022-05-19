@@ -8,8 +8,8 @@ class Calendar extends Controller {
     // Todo:余裕あったら後でバリデーション追加
     // date.isValid()
     try {
-      const days = calendar.month(date)
-      return res.json({ days })
+      const response = calendar.month(date)
+      return res.json(super.responseDto(response, 'days'))
     } catch (e) {
       // エラー
       next(e)

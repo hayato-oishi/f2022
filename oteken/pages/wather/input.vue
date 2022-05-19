@@ -10,6 +10,6 @@
 
 <script>
 export default {
-  name: 'WatherInputPage',
+  name: 'WeatherInputPage',
 }
 </script>

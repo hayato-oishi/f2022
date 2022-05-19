@@ -5,7 +5,7 @@
         <v-icon>mdi-home</v-icon>
       </v-btn>
       <v-spacer />
-      <v-btn to="/wather/input" nuxt icon>
+      <v-btn to="/weather/input" nuxt icon>
         <v-icon>mdi-weather-sunny</v-icon>
       </v-btn>
       <v-btn to="/login" nuxt icon>
