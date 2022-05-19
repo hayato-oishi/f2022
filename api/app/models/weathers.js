@@ -1,6 +1,6 @@
 import moment from 'moment'
 
-class weathers {
+class Weathers {
   constructor(params) {
     this.id = params.id
     this.weatherDate = moment(params.weather_date).format('YYYY-MM-DD')
@@ -18,4 +18,4 @@ class weathers {
   }
 }
 
-export default weathers
+export default Weathers

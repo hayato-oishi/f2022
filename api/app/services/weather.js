@@ -1,4 +1,4 @@
-import weathers from '../models/weathers.js'
+import Weathers from '../models/weathers.js'
 import weathers from '../repositories/weathers.js'
 
 class weather {
@@ -6,7 +6,7 @@ class weather {
     try {
       const records = await weathers.list({ start, end })
       const result = records.map((record) => {
-        return new weathers(record).get()
+        return new Weathers(record).get()
       })
       return result
     } catch (e) {
