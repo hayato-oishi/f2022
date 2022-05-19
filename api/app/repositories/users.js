@@ -1,5 +1,5 @@
 import database from '../modules/database.js'
-class User {
+class Users {
   async login({ email, password }) {
     return await database.query(
       'SELECT * FROM users WHERE email = ? AND password = ?',
@@ -8,4 +8,4 @@ class User {
   }
 }
 
-export default new User()
+export default new Users()

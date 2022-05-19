@@ -1,8 +1,8 @@
 import { Router } from 'express'
-import user from '../controllers/user.js'
+import wather from '../controllers/wather.js'
 const router = Router()
 
 // 天気リスト取得API
-router.get('/wather/list', user.login)
+router.get('/wather/list', wather.list)
 
 export default router

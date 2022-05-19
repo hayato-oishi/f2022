@@ -25,7 +25,13 @@
             <div>土</div>
           </div>
           <div class="days">
-            <div v-for="(day, index) in calendarDays" :key="`${index}day.day`" :class="{'prev-next-date': !day.sameMonth}">{{ day.day }}</div>
+            <div
+              v-for="(day, index) in calendarDays"
+              :key="`${index}day.day`"
+              :class="{ 'prev-next-date': !day.sameMonth }"
+            >
+              {{ day.day }}
+            </div>
           </div>
         </div>
       </v-col>
@@ -40,27 +46,27 @@ export default {
     return {
       listOfDate: [],
       date: new Date(),
-      today: new Date().toDateString()
+      today: new Date().toDateString(),
     }
   },
   computed: {
-    calendarDays () {
+    calendarDays() {
       const today = this.date
       return this.listOfDate.map((date) => {
         date = new Date(date)
         return {
           day: date.getDate(),
-          sameMonth: date.getMonth() === today.getMonth()
+          sameMonth: date.getMonth() === today.getMonth(),
         }
       })
     },
-    year () {
+    year() {
       return this.date.getFullYear()
     },
-    month () {
+    month() {
       return this.date.getMonth() + 1
     },
-    monthText () {
+    monthText() {
       const months = [
         '1月',
         '2月',
@@ -76,28 +82,30 @@ export default {
         '12月',
       ]
       return months[this.date.getMonth()]
-    }
+    },
   },
   created() {
     this.getCalendar(this.year, this.month)
   },
   methods: {
     async getCalendar(year, month) {
-      const response = await this.$axios.get(`/api/calendar/month?year=${year}&month=${month}`)
+      const response = await this.$axios.get(
+        `/api/calendar/month?year=${year}&month=${month}`
+      )
       this.listOfDate = response.data.days
     },
-    prev () {
+    prev() {
       const date = new Date(this.date)
       date.setMonth(date.getMonth() - 1)
       this.date = date
       this.getCalendar(this.year, this.month)
     },
-    next () {
+    next() {
       const date = new Date(this.date)
       date.setMonth(date.getMonth() + 1)
       this.date = date
       this.getCalendar(this.year, this.month)
-    }
+    },
   },
 }
 </script>
