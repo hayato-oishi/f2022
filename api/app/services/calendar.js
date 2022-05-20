@@ -29,7 +29,7 @@ class Calendar {
         date.date(i)
         days.push(date.format('YYYY-MM-DD'))
       }
-      return days
+      return { days }
     } catch (e) {
       throw new Error(e)
     }

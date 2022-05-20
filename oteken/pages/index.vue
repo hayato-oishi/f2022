@@ -28,7 +28,12 @@
             <div
               v-for="(day, index) in calendarDays"
               :key="`${index}day.day`"
-              :class="{ 'prev-next-date': !day.sameMonth }"
+              :class="{
+                'prev-next-date': !day.sameMonth,
+                'sunny': day.weather === 0,
+                'cloudy': day.weather === 1,
+                'rainy': day.weather === 2
+              }"
             >
               {{ day.day }}
             </div>
@@ -44,7 +49,8 @@ export default {
   name: 'IndexPage',
   data() {
     return {
-      listOfDate: [],
+      days: [],
+      listOfWeather: [],
       date: new Date(),
       today: new Date().toDateString(),
     }
@@ -52,10 +58,14 @@ export default {
   computed: {
     calendarDays() {
       const today = this.date
-      return this.listOfDate.map((date) => {
+      return this.days.map((date) => {
+        const weather = this.listOfWeather.find((weather) => {
+          return weather.weatherDate === date
+        })
         date = new Date(date)
         return {
           day: date.getDate(),
+          weather: weather !== undefined ? weather.weatherCode : null,
           sameMonth: date.getMonth() === today.getMonth(),
         }
       })
@@ -92,7 +102,14 @@ export default {
       const response = await this.$axios.get(
         `/api/calendar/month?year=${year}&month=${month}`
       )
-      this.listOfDate = response.data.days
+      this.days = response.data.days
+      await this.getListOfWeather()
+    },
+    async getListOfWeather () {
+      const response = await this.$axios.get(
+        `/api/weather/list?start=${this.days[0]}&end=${this.days[this.days.length - 1]}`
+      )
+      this.listOfWeather = response.data.listOfWeather
     },
     prev() {
       const date = new Date(this.date)

@@ -9,7 +9,7 @@ class Calendar extends Controller {
     // date.isValid()
     try {
       const response = calendar.month(date)
-      return res.json(super.responseDto(response, 'days'))
+      return res.json(super.responseDto(response))
     } catch (e) {
       // エラー
       next(e)

@@ -1,18 +1,18 @@
 import Weathers from '../models/weathers.js'
 import weathers from '../repositories/weathers.js'
 
-class weather {
+class Weather {
   async list({ start, end }) {
     try {
       const records = await weathers.list({ start, end })
-      const result = records.map((record) => {
+      const listOfWeather = records.map((record) => {
         return new Weathers(record).get()
       })
-      return result
+      return { listOfWeather }
     } catch (e) {
       throw new Error(e)
     }
   }
 }
 
-export default new weather()
+export default new Weather()

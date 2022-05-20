@@ -1,5 +1,5 @@
 class Controller {
-  responseDto(data, key = '') {
+  responseDto(data) {
     const { error } = data
     const result = {}
     // 正常系エラー時
@@ -8,8 +8,10 @@ class Controller {
       return result
     }
     // 正常系
-    if (data && key !== '') {
-      result[key] = data
+    if (data) {
+      Object.entries(data).forEach(([key, value]) => {
+        result[key] = value
+      })
       result.error = ''
       return result
     }

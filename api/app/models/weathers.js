@@ -13,7 +13,7 @@ class Weathers {
       id: this.id,
       weatherDate: this.weatherDate,
       weatherCode: this.weatherCode,
-      createdAt: this.createdAt
+      createdAt: this.createdAt,
     }
   }
 }
