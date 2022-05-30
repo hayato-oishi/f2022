@@ -14,7 +14,10 @@
         </v-btn>
       </template>
       <template v-else>
-        <v-icon>mdi-account</v-icon><span>{{ user.userName }}</span>
+        <v-btn nuxt icon @click="logout">
+          <v-icon>mdi-account</v-icon>
+        </v-btn>
+        <span>{{ user.userName }}</span>
       </template>
     </v-app-bar>
     <v-main>
@@ -34,5 +37,10 @@ export default {
   computed: mapState({
     user: state => state.user
   }),
+  methods: {
+    logout () {
+      this.$store.commit('user/logout')
+    }
+  }
 }
 </script>

@@ -11,4 +11,9 @@ export const mutations = {
       window.sessionStorage.setItem('user', JSON.stringify(state))
     }
   },
+  logout(state) {
+    state.userName = ''
+    state.token = null
+    window.sessionStorage.removeItem('user')
+  }
 }
