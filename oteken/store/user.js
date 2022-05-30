@@ -4,7 +4,7 @@ export const state = () => ({
 })
 
 export const mutations = {
-  set(state, { token = '', user = null }) {
+  login(state, { token = '', user = null }) {
     if (token) {
       state.userName = user?.userName ?? ''
       state.token = token
