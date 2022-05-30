@@ -12,7 +12,7 @@ class Controller {
       Object.entries(data).forEach(([key, value]) => {
         result[key] = value
       })
-      result.error = ''
+      result.error = null
       return result
     }
   }

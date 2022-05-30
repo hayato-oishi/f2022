@@ -7,7 +7,7 @@ class Users {
     this.createdAt = params.created_at
   }
 
-  get() {
+  getAll() {
     return {
       id: this.id,
       email: this.email,

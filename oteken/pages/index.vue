@@ -30,9 +30,9 @@
               :key="`${index}day.day`"
               :class="{
                 'prev-next-date': !day.sameMonth,
-                'sunny': day.weather === 0,
-                'cloudy': day.weather === 1,
-                'rainy': day.weather === 2
+                sunny: day.weather === 0,
+                cloudy: day.weather === 1,
+                rainy: day.weather === 2,
               }"
             >
               {{ day.day }}
@@ -99,16 +99,22 @@ export default {
   },
   methods: {
     async getCalendar(year, month) {
-      const response = await this.$axios.get(
-        `/api/calendar/month?year=${year}&month=${month}`
-      )
+      const response = await this.$axios.get('/api/calendar/month', {
+        params: {
+          year,
+          month
+        }
+      })
       this.days = response.data.days
       await this.getListOfWeather()
     },
-    async getListOfWeather () {
-      const response = await this.$axios.get(
-        `/api/weather/list?start=${this.days[0]}&end=${this.days[this.days.length - 1]}`
-      )
+    async getListOfWeather() {
+      const response = await this.$axios.get('/api/weather', {
+        params: {
+          start: this.days[0],
+          end: this.days[this.days.length - 1]
+        }
+      })
       this.listOfWeather = response.data.listOfWeather
     },
     prev() {

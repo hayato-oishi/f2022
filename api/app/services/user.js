@@ -5,15 +5,19 @@ class User {
   async login({ email, password }) {
     try {
       const records = await users.login({ email, password })
-      const [ user ] = records.map((record) => {
-        const user = new Users(record).get()
-        delete user.password
-        delete user.createdAt
-        return user
-      })
-      return {
-        user: user,
-        token: token.create()
+      if (records.length >= 1) {
+        const [ user ] = records.map((record) => {
+          const user = new Users(record).getAll()
+          delete user.password
+          delete user.createdAt
+          return user
+        })
+        return {
+          user: user,
+          token: token.create()
+        }
+      } else {
+        return { 'error': 'ログインに失敗しました' }
       }
     } catch (e) {
       throw new Error(e)

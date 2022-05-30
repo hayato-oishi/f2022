@@ -8,7 +8,7 @@ class Weathers {
     this.createdAt = params.created_at
   }
 
-  get() {
+  getAll() {
     return {
       id: this.id,
       weatherDate: this.weatherDate,

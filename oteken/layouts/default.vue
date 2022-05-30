@@ -8,9 +8,14 @@
       <v-btn to="/weather/input" nuxt icon>
         <v-icon>mdi-weather-sunny</v-icon>
       </v-btn>
-      <v-btn to="/login" nuxt icon>
-        <v-icon>mdi-login</v-icon>
-      </v-btn>
+      <template v-if="user.token == null">
+        <v-btn to="/login" nuxt icon>
+          <v-icon>mdi-login</v-icon>
+        </v-btn>
+      </template>
+      <template v-else>
+        <v-icon>mdi-account</v-icon><span>{{ user.userName }}</span>
+      </template>
     </v-app-bar>
     <v-main>
       <Nuxt />
@@ -22,7 +27,12 @@
 </template>
 
 <script>
+import { mapState } from "vuex"
+
 export default {
   name: 'DefaultLayout',
+  computed: mapState({
+    user: state => state.user
+  }),
 }
 </script>
