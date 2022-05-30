@@ -67,7 +67,7 @@ export default {
         this.$refs['dialog-notice'].open('ERROR', error)
         return
       }
-      this.$store.commit('user/set', response.data)
+      this.$store.commit('user/login', response.data)
       this.$router.push('/')
     },
   },
