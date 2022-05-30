@@ -65,6 +65,7 @@ export default {
       const { error } = response.data
       if (error) {
         this.$refs['dialog-notice'].open('ERROR', error)
+        return
       }
       this.$store.commit('user/set', response.data)
       this.$router.push('/')
