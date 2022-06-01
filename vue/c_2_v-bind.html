@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <style type="text/css">
+      .p-text {
+        color: #900;
+        font-size: 16px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <a v-bind:href="url">the link</a>
+      <a :href="url">the link</a>
+      <a href="url">the link</a>
+      <p :style="{ color: errColor, fontSize: mainFontSize + 'px' }">
+        スタイル
+      </p>
+      <p :class="{ 'p-text' : false }">スタイル</p>
+    </div>
+    <script>
+      const app = new Vue({
+        el: "#app",
+        data: {
+          url: "https://example.com",
+          errColor: "#900",
+          mainFontSize: 16,
+        },
+      });
+    </script>
+  </body>
+</html>

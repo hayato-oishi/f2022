@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>c_2_v-if</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <div v-if="hogeFlg">
+        <p>Anything</p>
+      </div>
+      <div v-else-if="fugaFlg && fooFlg">
+        <p>Something</p>
+      </div>
+      <div v-else>
+        <p>Other</p>
+      </div>
+    </div>
+    <script>
+      const app = new Vue({
+        el: "#app",
+        data: {
+          hogeFlg: true,
+          fugaFlg: false,
+          fooFlg: false,
+        },
+      });
+    </script>
+  </body>
+</html>

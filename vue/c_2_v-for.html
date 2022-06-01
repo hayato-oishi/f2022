@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <ul>
+        <li v-for="item in items" :key="item.id">
+          {{ item.id }}: {{ item.name }}
+        </li>
+      </ul>
+    </div>
+    <script>
+      const app = new Vue({
+        el: "#app",
+        data: {
+          items: [
+            {
+              id: 1,
+              name: "takashi",
+            },
+            {
+              id: 2,
+              name: "hose",
+            },
+          ],
+        },
+      });
+    </script>
+  </body>
+</html>

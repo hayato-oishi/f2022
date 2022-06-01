@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>c_2_v-show</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <p v-show="hasError">ErrorMsg</p>
+      <p v-show="!hasError">ErrorMsg</p>
+    </div>
+    <script>
+      const app = new Vue({
+        el: "#app",
+        data: {
+          hasError: true,
+        },
+      });
+    </script>
+  </body>
+</html>
