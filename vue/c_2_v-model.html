@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <input type="text" v-model="test" placeholder="何か入力してね" />
+      <input
+        type="text"
+        :value="test"
+        placeholder="何か入力してね"
+        @input="test = $event.target.value"
+      />
+      <p>入力内容 : {{ test }}</p>
+      <input type="checkbox" v-model="checked" />
+      <input
+        type="checkbox"
+        :checked="checked"
+        @change="checked = $event.target.checked"
+      />
+      <p>checked: {{ checked }}</p>
+      <input type="checkbox" id="cat1" value="アメショ" v-model="checkedCats" />
+      <label for="cat1">アメショ</label>
+      <input type="checkbox" id="cat2" value=" ソマリ " v-model="checkedCats" />
+      <label for="cat2">ソマリ</label>
+      <input type="checkbox" id="cat3" value="ベンガル" v-model="checkedCats" />
+      <label for="cat3">ベンガル</label>
+      <p>checked: {{ checkedCats }}</p>
+    </div>
+    <script>
+      const app = new Vue({
+        el: "#app",
+        data: {
+          test: "",
+          checked: false,
+          checkedCats: [],
+        },
+      });
+    </script>
+  </body>
+</html>

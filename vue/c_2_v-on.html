@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <button v-on:click="sheep++">ひつじが増えるボタン</button>
+      <button @click="sheep++">ひつじが増えるボタン</button>
+      <button @click="sheepCount">ひつじが増えるボタン</button>
+      <p>ひつじが{{ sheep }}匹</p>
+    </div>
+    <script>
+      const app = new Vue({
+        el: "#app",
+        data: {
+          sheep: 0,
+        },
+        methods: {
+          sheepCount() {
+            this.sheep++;
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
