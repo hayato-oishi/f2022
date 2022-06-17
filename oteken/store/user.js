@@ -4,16 +4,25 @@ export const state = () => ({
 })
 
 export const mutations = {
-  login(state, { token = '', user = null }) {
-    if (token) {
-      state.userName = user?.userName ?? ''
-      state.token = token
-      window.sessionStorage.setItem('user', JSON.stringify(state))
-    }
+  login(state) {
+    state.userName = user?.userName ?? ''
+    state.token = token
   },
   logout(state) {
     state.userName = ''
     state.token = null
+  }
+}
+
+export const actions = {
+  login({ commit }, { token = '', user = null }) {
+    if (token) {
+      commit('login', { token, user })
+      window.sessionStorage.setItem('user', JSON.stringify(state))
+    }
+  },
+  logout() {
+    commit('logout')
     window.sessionStorage.removeItem('user')
   }
 }

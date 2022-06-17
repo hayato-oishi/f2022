@@ -26,6 +26,7 @@
     <v-footer>
       <span>&copy; {{ new Date().getFullYear() }} 研修-お天気</span>
     </v-footer>
+    <dialog-notice-store />
   </v-app>
 </template>
 

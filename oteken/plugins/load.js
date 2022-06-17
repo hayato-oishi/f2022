@@ -7,6 +7,6 @@ export default function ({ app, store }) {
 const setUser = ((store) => {
   const user = window.sessionStorage.getItem('user')
   if (user) {
-    store.commit('user/login', JSON.parse(user))
+    store.dispatch('user/login', JSON.parse(user))
   }
 })

@@ -43,6 +43,11 @@
         </validation-observer>
       </v-col>
     </v-row>
+    <div class="mt-4">
+      <v-btn color="blue" block @click="openDialog">
+        モーダル
+      </v-btn>
+    </div>
   <dialog-notice ref="dialog-notice" />
   </v-container>
 </template>
@@ -67,9 +72,12 @@ export default {
         this.$refs['dialog-notice'].open('ERROR', error)
         return
       }
-      this.$store.commit('user/login', response.data)
+      this.$store.dispatch('user/login', response.data)
       this.$router.push('/')
     },
+    openDialog () {
+      this.$store.dispatch('dialog/open', { title: 'タイトル', text: 'テキスト'})
+    }
   },
 }
 </script>
