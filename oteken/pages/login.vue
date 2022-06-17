@@ -48,7 +48,7 @@
         モーダル
       </v-btn>
     </div>
-  <dialog-notice ref="dialog-notice" />
+  <dialog-notice ref="dialog-notice" @click="dialogEvent" />
   </v-container>
 </template>
 
@@ -77,6 +77,9 @@ export default {
     },
     openDialog () {
       this.$store.dispatch('dialog/open', { title: 'タイトル', text: 'テキスト'})
+    },
+    dialogEvent () {
+      console.log('好きな処理実行できますよ')
     }
   },
 }

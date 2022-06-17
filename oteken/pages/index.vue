@@ -28,12 +28,7 @@
             <div
               v-for="(day, index) in calendarDays"
               :key="`${index}day.day`"
-              :class="{
-                'prev-next-date': !day.sameMonth,
-                sunny: day.weather === 0,
-                cloudy: day.weather === 1,
-                rainy: day.weather === 2,
-              }"
+              :class="calendarClass(day)"
             >
               {{ day.day }}
             </div>
@@ -129,6 +124,14 @@ export default {
       this.date = date
       this.getCalendar(this.year, this.month)
     },
+    calendarClass (day) {
+      return {
+        'prev-next-date': !day.sameMonth,
+        'sunny': day.weather === 0,
+        'cloudy': day.weather === 1,
+        'rainy': day.weather === 2,
+      }
+    }
   },
 }
 </script>
