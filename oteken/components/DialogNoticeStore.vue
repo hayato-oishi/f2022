@@ -21,6 +21,9 @@ export default {
       title: state => state.title,
       text: state => state.text,
     }),
+    // isOpen () {
+    //   return this.$store.dialog.state.isOpen
+    // },
     dialog: {
       get () {
         return this.isOpen
@@ -28,6 +31,7 @@ export default {
       set (newValue) {
         if (!newValue) {
           this.close()
+          this.$store.dispatch('dialog/close')
         }
       }
     }

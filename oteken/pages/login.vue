@@ -44,7 +44,7 @@
       </v-col>
     </v-row>
     <div class="mt-4">
-      <v-btn color="blue" block @click="openDialog">
+      <v-btn color="blue" block @click="openDialog('title', 'text')">
         モーダル
       </v-btn>
     </div>
@@ -53,8 +53,13 @@
 </template>
 
 <script>
+import { dialog } from '~/mixins/index.js'
+
 export default {
   name: 'LoginPage',
+  mixins: [
+    dialog
+  ],
   data() {
     return {
       email: '',
@@ -75,11 +80,8 @@ export default {
       this.$store.dispatch('user/login', response.data)
       this.$router.push('/')
     },
-    openDialog () {
-      this.$store.dispatch('dialog/open', { title: 'タイトル', text: 'テキスト'})
-    },
     dialogEvent () {
-      console.log('好きな処理実行できますよ')
+      // console.log('好きな処理実行できますよ')
     }
   },
 }

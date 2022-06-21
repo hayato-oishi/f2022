@@ -11,8 +11,8 @@
     </v-card>
   </v-dialog>
 </template>
-<script>
 
+<script>
 export default {
   data: () => ({
     dialog: false,

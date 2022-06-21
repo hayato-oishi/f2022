@@ -42,8 +42,13 @@
 </template>
 
 <script>
+import { dialog } from '~/mixins/index.js'
+
 export default {
   name: 'WeatherInputPage',
+  mixins: [
+    dialog
+  ],
   data() {
     return {
       date: '',
@@ -80,6 +85,9 @@ export default {
       this.$refs.observer.reset()
       this.$refs['dialog-notice'].open('SUCCESS', '登録に成功しました')
     },
+    dialogEvent () {
+      // console.log('好きな処理実行できますよ')
+    }
   },
 }
 </script>

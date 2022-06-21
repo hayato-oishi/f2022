@@ -1,10 +1,14 @@
 export const state = () => ({
+  // ダイアログの開閉状態
   isOpen: false,
+  // ダイアログのタイトル
   title: '',
+  // ダイアログのテキスト
   text: ''
 })
 
 export const mutations = {
+  // ダイアログが開いたとき
   open(state, { text, title }) {
     state.text = text
     state.title = title
